@@ -26,11 +26,7 @@ public class GetRiskBadge {
 
     private List<Integer> toSeries(List<Checkin> list) {
         var out = new ArrayList<Integer>(list.size());
-        for (var c : list) {
-            Integer v = c.getCargaTrabalho();
-            if (v == null) v = 0;
-            out.add(v);
-        }
+        for (var c : list) out.add(c.getCargaTrabalho() == null ? 0 : c.getCargaTrabalho());
         return out;
     }
 

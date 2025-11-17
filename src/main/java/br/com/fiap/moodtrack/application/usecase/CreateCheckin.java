@@ -1,5 +1,6 @@
 package br.com.fiap.moodtrack.application.usecase;
 
+import br.com.fiap.moodtrack.application.exception.DuplicateCheckinException;
 import br.com.fiap.moodtrack.domain.model.Checkin;
 import br.com.fiap.moodtrack.domain.model.RiskLevel;
 import br.com.fiap.moodtrack.domain.repository.CheckinRepository;
@@ -18,7 +19,7 @@ public class CreateCheckin {
     public Checkin handle(Checkin in) {
         var day = in.getDataCheckin() != null ? in.getDataCheckin().toLocalDate() : LocalDate.now();
         var existing = checkinRepository.findByUsuarioAndDate(in.getUsuario().getId(), day);
-        if (existing.isPresent()) throw new IllegalStateException("checkin already exists for day");
+        if (existing.isPresent()) throw new DuplicateCheckinException("checkin already exists for day");
         in.setNivelRisco(computeRisk(in.getHumor(), in.getEnergia(), in.getCargaTrabalho()));
         return checkinRepository.save(in);
     }

@@ -14,9 +14,7 @@ public class ListCheckin {
     @Inject CheckinRepository checkinRepository;
 
     public List<Checkin> handle(Long userId, LocalDateTime from, LocalDateTime to) {
-        if (from == null && to == null) {
-            return checkinRepository.findLastN(userId, 30);
-        }
+        if (from == null && to == null) return checkinRepository.findLastN(userId, 30);
         if (from == null) from = LocalDateTime.MIN;
         if (to == null) to = LocalDateTime.MAX;
         return checkinRepository.findByUsuarioBetween(userId, from, to);
