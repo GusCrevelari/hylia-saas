@@ -7,6 +7,7 @@ import br.com.fiap.moodtrack.domain.model.Dica;
 import br.com.fiap.moodtrack.domain.model.RiskLevel;
 import br.com.fiap.moodtrack.domain.repository.CheckinRepository;
 import br.com.fiap.moodtrack.domain.repository.DicaRepository;
+import br.com.fiap.moodtrack.infrastructure.persistence.qualifier.JpaRepo;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
@@ -17,7 +18,9 @@ import java.time.LocalDateTime;
 public class UpdateCheckin {
 
     @Inject CheckinRepository checkinRepository;
-    @Inject DicaRepository dicaRepository;
+
+    @Inject @JpaRepo
+    DicaRepository dicaRepository;
 
     @Transactional
     public Checkin handle(Long id,

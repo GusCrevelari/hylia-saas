@@ -2,6 +2,7 @@ package br.com.fiap.moodtrack.infrastructure.persistence;
 
 import br.com.fiap.moodtrack.domain.model.Dica;
 import br.com.fiap.moodtrack.domain.repository.DicaRepository;
+import br.com.fiap.moodtrack.infrastructure.persistence.qualifier.JpaRepo;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
@@ -11,11 +12,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.ThreadLocalRandom;
 
+@JpaRepo
 @ApplicationScoped
 public class JpaDicaRepository implements DicaRepository {
-
-    @Inject
-    EntityManager em;
+    @Inject EntityManager em;
 
     @Transactional
     @Override
