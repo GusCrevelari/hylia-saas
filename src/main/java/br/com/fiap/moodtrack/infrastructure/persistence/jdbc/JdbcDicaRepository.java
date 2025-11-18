@@ -95,7 +95,7 @@ public class JdbcDicaRepository implements DicaRepository {
         try (var con = cf.getConnection();
              var ps = con.prepareStatement(
                      "SELECT ID_DICA,TITULO,DESCRICAO,CATEGORIA " +
-                             "FROM DICAS ORDER BY DBMS_RANDOM.VALUE FETCH FIRST 1 ROWS ONLY");
+                             "FROM DICAS ORDER BY SYS_GUID() FETCH FIRST 1 ROWS ONLY");
              var rs = ps.executeQuery()) {
             if (!rs.next()) return Optional.empty();
             return Optional.of(map(rs));

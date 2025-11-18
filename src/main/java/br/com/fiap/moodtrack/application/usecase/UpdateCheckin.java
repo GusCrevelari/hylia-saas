@@ -15,7 +15,8 @@ import jakarta.transaction.Transactional;
 import java.time.LocalDateTime;
 
 @ApplicationScoped
-public class UpdateCheckin {
+public class
+UpdateCheckin {
 
     @Inject CheckinRepository checkinRepository;
 
