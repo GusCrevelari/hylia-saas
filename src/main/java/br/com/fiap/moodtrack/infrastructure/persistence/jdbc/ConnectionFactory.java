@@ -3,7 +3,6 @@ package br.com.fiap.moodtrack.infrastructure.persistence.jdbc;
 import io.agroal.api.AgroalDataSource;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
-
 import java.sql.Connection;
 import java.sql.SQLException;
 

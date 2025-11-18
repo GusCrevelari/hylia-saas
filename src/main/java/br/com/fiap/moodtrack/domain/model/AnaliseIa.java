@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import jakarta.persistence.Column;
 
 @Entity
 @Table(name = "ANALISES_IA")
@@ -26,7 +27,7 @@ public class AnaliseIa implements Serializable {
 
     // NUMBER(precision, scale) in Oracle; map as Double
     // Validate bounds in use cases if needed (e.g., 0.0..1.0)
-    @Column(name = "SCORE_RISCO")
+    @Column(name = "SCORE_RISCO", columnDefinition = "NUMBER")
     private Double scoreRisco;
 
     @Column(name = "DATA_ANALISE")

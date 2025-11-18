@@ -10,6 +10,7 @@ import br.com.fiap.moodtrack.domain.model.Dica;
 import br.com.fiap.moodtrack.domain.model.Usuario;
 import br.com.fiap.moodtrack.domain.repository.DicaRepository;
 import br.com.fiap.moodtrack.domain.repository.UsuarioRepository;
+import br.com.fiap.moodtrack.infrastructure.persistence.qualifier.JpaRepo; // <-- add this
 import br.com.fiap.moodtrack.infrastructure.web.dto.CheckinInputDto;
 import br.com.fiap.moodtrack.infrastructure.web.dto.CheckinOutputDto;
 import br.com.fiap.moodtrack.infrastructure.web.dto.RiskResponseDto;
@@ -33,7 +34,9 @@ import java.util.stream.Collectors;
 public class CheckinResource {
 
     @Inject UsuarioRepository usuarioRepo;
-    @Inject DicaRepository dicaRepo;
+
+    @Inject @JpaRepo                // <-- qualify as JPA to disambiguate
+    DicaRepository dicaRepo;
 
     @Inject CreateCheckin createCheckin;
     @Inject ListCheckin listCheckins;

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>br.com.fiap</groupId>
     <artifactId>hylia-saas</artifactId>
@@ -9,17 +10,19 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
+        <!-- Quarkus platform bumped to a line that brings Netty >= 4.1.119 -->
         <quarkus.platform.group-id>io.quarkus.platform</quarkus.platform.group-id>
         <quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>
-        <quarkus.platform.version>3.13.1</quarkus.platform.version>
+        <quarkus.platform.version>3.20.1</quarkus.platform.version>
 
+        <!-- Java toolchain -->
         <maven.compiler.release>17</maven.compiler.release>
 
+        <!-- Plugins -->
         <compiler-plugin.version>3.14.1</compiler-plugin.version>
         <surefire-plugin.version>3.5.4</surefire-plugin.version>
         <skipITs>true</skipITs>
     </properties>
-
 
     <dependencyManagement>
         <dependencies>
@@ -40,6 +43,7 @@
             <artifactId>quarkus-hibernate-orm</artifactId>
         </dependency>
 
+        <!-- REST -->
         <dependency>
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-rest</artifactId>
@@ -49,6 +53,7 @@
             <artifactId>quarkus-rest-jackson</artifactId>
         </dependency>
 
+        <!-- DB / Pool / Oracle JDBC -->
         <dependency>
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-agroal</artifactId>
@@ -58,6 +63,7 @@
             <artifactId>quarkus-jdbc-oracle</artifactId>
         </dependency>
 
+        <!-- Validation & CDI -->
         <dependency>
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-hibernate-validator</artifactId>
@@ -67,7 +73,7 @@
             <artifactId>quarkus-arc</artifactId>
         </dependency>
 
-        <!-- optional but handy -->
+        <!-- (Optional) Docs & Migrations -->
         <dependency>
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-smallrye-openapi</artifactId>
@@ -81,7 +87,7 @@
             <artifactId>quarkus-flyway</artifactId>
         </dependency>
 
-        <!-- tests -->
+        <!-- Test -->
         <dependency>
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-junit5</artifactId>
@@ -96,12 +102,23 @@
 
     <build>
         <plugins>
-            <!-- Match plugin to platform version -->
             <plugin>
-                <groupId>${quarkus.platform.group-id}</groupId>
+                <groupId>io.quarkus</groupId>
                 <artifactId>quarkus-maven-plugin</artifactId>
                 <version>${quarkus.platform.version}</version>
                 <extensions>true</extensions>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>build</goal>
+                            <goal>generate-code</goal>
+                            <goal>generate-code-tests</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <enforceBuildGoal>true</enforceBuildGoal>
+                </configuration>
             </plugin>
 
             <plugin>
