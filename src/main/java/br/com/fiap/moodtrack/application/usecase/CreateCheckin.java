@@ -1,5 +1,4 @@
 package br.com.fiap.moodtrack.application.usecase;
-
 import br.com.fiap.moodtrack.application.exception.DuplicateCheckinException;
 import br.com.fiap.moodtrack.domain.model.Checkin;
 import br.com.fiap.moodtrack.domain.model.RiskLevel;
