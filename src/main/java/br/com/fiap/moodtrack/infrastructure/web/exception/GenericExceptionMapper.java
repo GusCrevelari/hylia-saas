@@ -34,7 +34,7 @@ public class GenericExceptionMapper implements ExceptionMapper<Throwable> {
         details.put("rootMessage", String.valueOf(root.getMessage()));
 
         ProblemDetails body = new ProblemDetails(
-                OffsetDateTime.now(),          // ✅ matches your constructor
+                OffsetDateTime.now(),
                 500,
                 "Internal Server Error",
                 "unexpected error",
