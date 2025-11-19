@@ -28,7 +28,7 @@ import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Path("/")
+@Path("/users")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class CheckinResource {
@@ -45,7 +45,7 @@ public class CheckinResource {
     @Inject GetRiskBadge getRiskBadge;
 
     @POST
-    @Path("/users/{userId}/checkins")
+    @Path("/{userId}/checkins")
     @Transactional
     public Response postCheckin(@PathParam("userId") Long userId, @Valid CheckinInputDto in, @Context UriInfo uri) {
         Usuario usuario = usuarioRepo.findById(userId)
@@ -66,7 +66,7 @@ public class CheckinResource {
     }
 
     @GET
-    @Path("/users/{userId}/checkins")
+    @Path("/{userId}/checkins")
     public Response getCheckins(
             @PathParam("userId") Long userId,
             @QueryParam("from") String fromStr,
@@ -107,7 +107,7 @@ public class CheckinResource {
     }
 
     @GET
-    @Path("/users/{userId}/risk")
+    @Path("/{userId}/risk")
     public Response getRisk(@PathParam("userId") Long userId, @QueryParam("days") @DefaultValue("7") int days) {
         var result = getRiskBadge.handle(userId, days);
         RiskResponseDto dto = new RiskResponseDto(result.badge(), result.series());

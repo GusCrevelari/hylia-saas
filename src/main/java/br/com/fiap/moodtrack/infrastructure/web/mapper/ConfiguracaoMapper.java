@@ -12,7 +12,10 @@ public final class ConfiguracaoMapper {
         var c = new Configuracao();
         c.setUsuario(usuario);
         c.setTema(in.getTema());
-        c.setNotificacaoAtiva(in.getNotificacaoAtiva());
+        c.setNotificacaoAtiva(
+                in.getNotificacaoAtiva() == null ? null :
+                        (in.getNotificacaoAtiva() ? 1 : 0)
+        );
         c.setHorarioLimite(in.getHorarioLimite());
         c.setFusoHorario(in.getFusoHorario());
         return c;
@@ -23,7 +26,8 @@ public final class ConfiguracaoMapper {
         out.setId(c.getId());
         out.setUsuarioId(c.getUsuario() != null ? c.getUsuario().getId() : null);
         out.setTema(c.getTema());
-        out.setNotificacaoAtiva(c.getNotificacaoAtiva());
+        out.setNotificacaoAtiva(c.getNotificacaoAtiva() != null && c.getNotificacaoAtiva() == 1);
+
         out.setHorarioLimite(c.getHorarioLimite());
         out.setFusoHorario(c.getFusoHorario());
         return out;
