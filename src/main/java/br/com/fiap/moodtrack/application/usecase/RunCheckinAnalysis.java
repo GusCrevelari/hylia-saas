@@ -30,7 +30,7 @@ public class RunCheckinAnalysis {
         analise.setModeloUtilizado("MyAwesomeModel-v1");
         analise.setScoreRisco(result.score());
         analise.setDataAnalise(LocalDateTime.now());
-        // analise.setResumo(result.resumo());
+        analise.setResumo(result.resumo());
 
         return analiseRepo.save(analise);
     }

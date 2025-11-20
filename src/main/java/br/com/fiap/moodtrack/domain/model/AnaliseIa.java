@@ -79,4 +79,10 @@ public class AnaliseIa implements Serializable {
     public String toString() {
         return "AnaliseIa{id=" + id + ", checkin=" + (checkin != null ? checkin.getId() : null) + "}";
     }
+
+    @Column(name = "RESUMO", length = 1000)
+    private String resumo;
+
+    public String getResumo() { return resumo; }
+    public void setResumo(String resumo) { this.resumo = resumo; }
 }

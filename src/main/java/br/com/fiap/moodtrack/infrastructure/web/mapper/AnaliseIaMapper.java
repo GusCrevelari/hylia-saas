@@ -13,7 +13,7 @@ public final class AnaliseIaMapper {
                 a.getModeloUtilizado(),
                 a.getScoreRisco(),
                 a.getDataAnalise(),
-                null
+                a.getResumo()
         );
     }
 }
