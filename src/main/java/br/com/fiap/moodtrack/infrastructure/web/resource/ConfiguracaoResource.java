@@ -41,7 +41,7 @@ public class ConfiguracaoResource {
             return ConfiguracaoMapper.toOutput(created);
         } else {
             existing.setTema(in.getTema());
-            existing.setNotificacaoAtiva(in.getNotificacaoAtiva());
+            existing.setNotificacaoAtiva(in.getNotificacaoAtiva() ? 1 : 0);
             existing.setHorarioLimite(in.getHorarioLimite());
             existing.setFusoHorario(in.getFusoHorario());
             return ConfiguracaoMapper.toOutput(configRepo.save(existing));

@@ -4,7 +4,7 @@ public class ConfiguracaoOutputDto {
     private Long id;
     private Long usuarioId;
     private String tema;
-    private Integer notificacaoAtiva;
+    private Boolean notificacaoAtiva;
     private String horarioLimite;
     private String fusoHorario;
 
@@ -14,8 +14,8 @@ public class ConfiguracaoOutputDto {
     public void setUsuarioId(Long usuarioId) { this.usuarioId = usuarioId; }
     public String getTema() { return tema; }
     public void setTema(String tema) { this.tema = tema; }
-    public Integer getNotificacaoAtiva() { return notificacaoAtiva; }
-    public void setNotificacaoAtiva(Integer notificacaoAtiva) { this.notificacaoAtiva = notificacaoAtiva; }
+    public Boolean getNotificacaoAtiva() { return notificacaoAtiva; }
+    public void setNotificacaoAtiva(Boolean notificacaoAtiva) { this.notificacaoAtiva = notificacaoAtiva; }
     public String getHorarioLimite() { return horarioLimite; }
     public void setHorarioLimite(String horarioLimite) { this.horarioLimite = horarioLimite; }
     public String getFusoHorario() { return fusoHorario; }
