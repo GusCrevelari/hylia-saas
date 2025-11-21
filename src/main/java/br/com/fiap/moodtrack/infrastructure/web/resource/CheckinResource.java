@@ -90,16 +90,23 @@ public class CheckinResource {
     }
 
     @PUT
-    @Path("users/checkins/{id}")
+    @Path("/checkins/{id}")
     @Transactional
     public Response putCheckin(@PathParam("id") Long id, @Valid CheckinInputDto in) {
-        Checkin updated = updateCheckin.handle(id, in.getHumor(), in.getEnergia(),
-                in.getCargaTrabalho(), in.getObservacao(), in.getDicaId(), in.getDataCheckin());
+        Checkin updated = updateCheckin.handle(
+                id,
+                in.getHumor(),
+                in.getEnergia(),
+                in.getCargaTrabalho(),
+                in.getObservacao(),
+                in.getDicaId(),
+                in.getDataCheckin()
+        );
         return Response.ok(CheckinMapper.toOutput(updated)).build();
     }
 
     @DELETE
-    @Path("users/checkins/{id}")
+    @Path("/checkins/{id}")
     @Transactional
     public Response deleteCheckin(@PathParam("id") Long id) {
         deleteCheckin.handle(id);
@@ -108,7 +115,8 @@ public class CheckinResource {
 
     @GET
     @Path("/{userId}/risk")
-    public Response getRisk(@PathParam("userId") Long userId, @QueryParam("days") @DefaultValue("7") int days) {
+    public Response getRisk(@PathParam("userId") Long userId,
+                            @QueryParam("days") @DefaultValue("7") int days) {
         var result = getRiskBadge.handle(userId, days);
         RiskResponseDto dto = new RiskResponseDto(result.badge(), result.series());
         return Response.ok(dto).build();
