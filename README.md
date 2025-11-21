@@ -70,64 +70,76 @@ Funcionalidades implementadas:
 
 ---
 
-## 5. Tabela de Endpoints – API RESTful
+## Tabela de Endpoints – API RESTful (Atualizada)
 
 ### Usuários (`/users`)
-| Método | URI | Descrição | Status |
-|--------|-----|-----------|--------|
-| POST | `/users` | Cria um usuário | 201, 400 |
-| GET | `/users` | Lista todos os usuários | 200 |
-| GET | `/users/{id}` | Busca um usuário por ID | 200, 404 |
+| Método | URI              | Descrição                | Status            |
+|--------|------------------|--------------------------|-------------------|
+| POST   | `/users`         | Cria um usuário          | 201, 400          |
+| GET    | `/users`         | Lista todos os usuários  | 200               |
+| GET    | `/users/{id}`    | Busca usuário por ID     | 200, 404          |
 
 ---
 
-### Check-ins (`/users/{userId}/checkins`)
-| Método | URI | Descrição | Status |
-|--------|-----|-----------|--------|
-| POST | `/users/{id}/checkins` | Cria um check-in | 201, 400 |
-| GET | `/users/{id}/checkins` | Lista check-ins (opcional: data de–até) | 200 |
-| PUT | `/users/checkins/{id}` | Atualiza um check-in | 200, 404 |
-| DELETE | `/users/checkins/{id}` | Remove um check-in | 204, 404 |
+### Check-ins por Usuário (`/users/{userId}/checkins`)
+| Método | URI                            | Descrição                                           | Status      |
+|--------|--------------------------------|-----------------------------------------------------|-------------|
+| POST   | `/users/{userId}/checkins`     | Cria check-in para um usuário                      | 201, 400    |
+| GET    | `/users/{userId}/checkins`     | Lista check-ins do usuário (filtros `from`/`to`)   | 200, 400    |
+
+Parâmetros opcionais em `GET /users/{userId}/checkins`:
+- `from=yyyy-MM-dd`
+- `to=yyyy-MM-dd`
+
+---
+
+### Operações diretas em Check-ins (`/checkins`)
+| Método | URI               | Descrição                    | Status      |
+|--------|-------------------|------------------------------|-------------|
+| PUT    | `/checkins/{id}`  | Atualiza um check-in         | 200, 400, 404 |
+| DELETE | `/checkins/{id}`  | Remove um check-in           | 204, 404    |
 
 ---
 
 ### Análise com IA (`/users/checkins/{id}/analysis`)
-| Método | URI | Descrição | Status |
-|--------|-----|-----------|--------|
-| POST | `/users/checkins/{id}/analysis` | Gera análise de burnout com IA | 200, 404, 500 |
+| Método | URI                                | Ingestão IA / OpenAI                   | Status             |
+|--------|------------------------------------|----------------------------------------|--------------------|
+| POST   | `/users/checkins/{id}/analysis`    | Gera análise de risco para o check-in  | 200, 404, 500      |
 
 ---
 
 ### Risco Consolidado (`/users/{userId}/risk`)
-| Método | URI | Descrição | Status |
-|--------|-----|-----------|--------|
-| GET | `/users/{id}/risk?days=7` | Calcula badge de risco | 200, 404 |
+| Método | URI                        | Descrição                                        | Status      |
+|--------|----------------------------|--------------------------------------------------|-------------|
+| GET    | `/users/{userId}/risk`     | Retorna badge + série de risco (últimos `days`) | 200, 404    |
+
+Query param:
+- `days` (int, default `7`)
 
 ---
 
 ### Dicas (`/tips`)
-| Método | URI | Descrição | Status |
-|--------|-----|-----------|--------|
-| GET | `/tips/random` | Retorna uma dica aleatória | 200, 404 (sem dicas) |
+| Método | URI            | Descrição                  | Status  |
+|--------|----------------|----------------------------|---------|
+| GET    | `/tips/random` | Retorna dica aleatória     | 200, 404 (sem dicas) |
 
 ---
 
 ### Feedbacks (`/feedbacks`)
-| Método | URI | Descrição | Status |
-|--------|-----|-----------|--------|
-| POST | `/feedbacks` | Cria feedback | 201, 400 |
-| GET | `/feedbacks/users/{id}` | Lista feedbacks do usuário | 200 |
+| Método | URI                           | Descrição                            | Status      |
+|--------|-------------------------------|--------------------------------------|-------------|
+| POST   | `/feedbacks`                  | Cria feedback do usuário             | 201, 400    |
+| GET    | `/feedbacks/users/{userId}`   | Lista feedbacks de um usuário        | 200         |
 
 ---
 
 ### Configurações (`/config`)
-| Método | URI | Descrição | Status |
-|--------|-----|-----------|--------|
-| GET | `/config/users/{id}` | Retorna config do usuário | 200, 404 |
-| POST | `/config` | Upsert de configuração | 200, 201, 400 |
+| Método | URI                    | Descrição                                  | Status                 |
+|--------|------------------------|--------------------------------------------|------------------------|
+| GET    | `/config/users/{id}`   | Retorna configuração do usuário            | 200, 404               |
+| POST   | `/config`              | Cria/atualiza configuração do usuário (upsert) | 200/201, 400      |
 
 ---
-
 ## Conclusão
 
 O backend MoodTracker apresenta uma API REST completa, escalável e totalmente integrada com Inteligência Artificial, sendo capaz de:
