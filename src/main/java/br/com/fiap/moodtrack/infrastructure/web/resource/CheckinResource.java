@@ -90,7 +90,7 @@ public class CheckinResource {
     }
 
     @PUT
-    @Path("/checkins/{id}")
+    @Path("users/checkins/{id}")
     @Transactional
     public Response putCheckin(@PathParam("id") Long id, @Valid CheckinInputDto in) {
         Checkin updated = updateCheckin.handle(id, in.getHumor(), in.getEnergia(),
@@ -99,7 +99,7 @@ public class CheckinResource {
     }
 
     @DELETE
-    @Path("/checkins/{id}")
+    @Path("users/checkins/{id}")
     @Transactional
     public Response deleteCheckin(@PathParam("id") Long id) {
         deleteCheckin.handle(id);

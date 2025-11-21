@@ -1,11 +1,11 @@
 # MoodTracker – Documentação Técnica do Backend
 
 ## Sumário
-1. Objetivo e Escopo do Projeto ........................................ pág. 1
-2. Descrição da Solução Proposta ....................................... pág. 1
-3. Funcionalidades Principais ............................................ pág. 2
-4. Destaques das Funcionalidades Implementadas ................. pág. 2
-5. Tabela de Endpoints (API RESTful) .................................. pág. 3
+1. Objetivo e Escopo do Projeto
+2. Descrição da Solução Proposta
+3. Funcionalidades Principais
+4. Destaques das Funcionalidades Implementadas
+5. Tabela de Endpoints (API RESTful)
 
 ---
 
