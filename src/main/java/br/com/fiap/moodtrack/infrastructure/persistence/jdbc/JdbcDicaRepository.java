@@ -6,6 +6,7 @@ import br.com.fiap.moodtrack.infrastructure.persistence.qualifier.JdbcRepo;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
+import java.util.concurrent.ThreadLocalRandom;
 
 import java.sql.*;
 import java.util.*;
@@ -92,14 +93,14 @@ public class JdbcDicaRepository implements DicaRepository {
 
     @Override
     public Optional<Dica> findRandom() {
-        try (var con = cf.getConnection();
-             var ps = con.prepareStatement(
-                     "SELECT ID_DICA,TITULO,DESCRICAO,CATEGORIA " +
-                             "FROM DICAS ORDER BY SYS_GUID() FETCH FIRST 1 ROWS ONLY");
-             var rs = ps.executeQuery()) {
-            if (!rs.next()) return Optional.empty();
-            return Optional.of(map(rs));
-        } catch (SQLException e) { throw new RuntimeException(e); }
+        // Reaproveita o próprio JDBC do repositório
+        List<Dica> all = findAll();
+        if (all == null || all.isEmpty()) {
+            return Optional.empty();
+        }
+
+        int idx = ThreadLocalRandom.current().nextInt(all.size());
+        return Optional.of(all.get(idx));
     }
 
     private Dica map(ResultSet rs) throws SQLException {
