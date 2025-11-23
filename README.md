@@ -149,7 +149,21 @@ O backend MoodTracker apresenta uma API REST completa, escalável e totalmente i
 - Manter registro histórico,
 - Funcionar integralmente na nuvem.
 
-Deploy address: https://hylia-moodtracker.onrender.com
+## Deploy address
+
+https://hylia-moodtracker.onrender.com
+
+## Video Pitch
+
+https://www.youtube.com/watch?v=EjGmsHIYzlc
+
+## Video Demo
+
+https://www.youtube.com/watch?v=hA0fVkPOPBE
+
+## Git Repo
+
+https://github.com/GusCrevelari/hylia-saas
 
 
 
